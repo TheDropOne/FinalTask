@@ -22,6 +22,16 @@ public class InputOutput {
         }
     }
 
+    public static void writeString(File way, String content) {
+        try {
+            FileWriter writer = new FileWriter(way);
+            writer.write(content);
+            writer.close();
+        } catch (IOException exception) {
+            exception.getLocalizedMessage();
+        }
+    }
+
 
     public static void writeMap(File way, Map<String, Integer> map) {
         try {

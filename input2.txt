@@ -1,1 +1,1 @@
-inputWithCleanCode.java
+resultWithCleanCode.java

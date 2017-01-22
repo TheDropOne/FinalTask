@@ -56,4 +56,30 @@ public class StringParser {
         }
         return manyLinesComments;
     }
+
+    public static boolean isInCircleBrackets(String source, int index) {
+        String stringBeforeSymbol = source.substring(0, index);
+        return stringBeforeSymbol.lastIndexOf("(") > stringBeforeSymbol.lastIndexOf(")") && source.indexOf(")", index) < source.indexOf("(", index);
+    }
+
+    public static boolean isInFigureBrackets(String source, int index) {
+        String stringBeforeSymbol = source.substring(0, index);
+        return stringBeforeSymbol.lastIndexOf("{") > stringBeforeSymbol.lastIndexOf("}") && source.indexOf("}") < source.indexOf("{");
+    }
+
+    public static boolean isInQuotes(String source, int index) {
+        String stringBeforeSymbol = source.substring(0, index);
+        int quotesCount = 0;
+        int quoteIndex = 0;
+        while (stringBeforeSymbol.indexOf("\"", quoteIndex) != -1) {
+            quotesCount++;
+            quoteIndex = stringBeforeSymbol.indexOf("\"", quoteIndex) + 1;
+        }
+        return quotesCount % 2 == 1;
+    }
+
+    public static int lastIndexOfCharacter(String source, int index, char character) {
+        String cuttedString = source.substring(0, index);
+        return cuttedString.lastIndexOf(character);
+    }
 }

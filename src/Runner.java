@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -29,14 +27,12 @@ public class Runner {
             sourceJavaFile = new File(InputOutput.readStringFromFile(inputFile1));
             resultJavaFile = new File(InputOutput.readStringFromFile(inputFile2));
 
-
             List<String> sourceFileLines = InputOutput.readListOfStrings(sourceJavaFile);
             String sourceFileString = StringParser.listToString(sourceFileLines);
             List<String> comments = new ArrayList<>();
 
             comments.addAll(StringParser.getOneLineComments(sourceFileLines));
             comments.addAll(StringParser.getManyLinesComments(sourceFileString));
-
 
             //Task 1
             Collections.sort(comments, (o1, o2) -> o1.length() - o2.length());
@@ -47,6 +43,17 @@ public class Runner {
             InputOutput.writeMap(outputFile2, commentCountMap);
 
             //Task 3
+            sourceFileString = StringFormatter.trimString(sourceFileString);
+            sourceFileString = StringFormatter.trimMultidefinition(sourceFileString);
+            sourceFileString = StringFormatter.surroundOperatorBlocks(sourceFileString);
+            sourceFileString = StringFormatter.addLineSeparators(sourceFileString);
+            sourceFileString = StringFormatter.trimKeywords(sourceFileString);
+            sourceFileString = StringFormatter.addTabulation(sourceFileString);
+            sourceFileString = StringFormatter.surroundOperators(sourceFileString);
+            sourceFileString = StringFormatter.renameVariables(sourceFileString);
+
+
+            InputOutput.writeString(resultJavaFile, sourceFileString);
 
 
         } catch (Exception ex) {
@@ -54,3 +61,10 @@ public class Runner {
         }
     }
 }
+
+
+
+
+
+
+
