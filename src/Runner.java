@@ -1,4 +1,6 @@
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,11 +18,17 @@ public class Runner {
             File outputFile1 = new File("output1.txt");
             File outputFile2 = new File("output2.txt");
 
+            // После 4 часов дебага, гугления и прошерстки StackOverflow
+            // получилось узнать в чем дело - входной файл input1.txt на моем компьютере был создан в кодировке UTF-8
+            // первый байт в файле такой кодировки - Byte Order Mark, не был распознан самой кодировкой, т.е
+            // чтение из файла производилось корректно, но в получаемой строке был символ Юникода, который не отображатся
+            // в строке, и при дебаге и выводе на консоль его не заметно. Подробнее про сам баг -
+            // http://bugs.java.com/view_bug.do?bug_id=4508058
+            // Проблема решена созданием файла в ANSI.
+
             sourceJavaFile = new File(InputOutput.readStringFromFile(inputFile1));
             resultJavaFile = new File(InputOutput.readStringFromFile(inputFile2));
 
-            //System.setProperty()
-            System.out.println(sourceJavaFile.getAbsolutePath());
 
             List<String> sourceFileLines = InputOutput.readListOfStrings(sourceJavaFile);
             String sourceFileString = StringParser.listToString(sourceFileLines);
@@ -39,7 +47,6 @@ public class Runner {
             InputOutput.writeMap(outputFile2, commentCountMap);
 
             //Task 3
-
 
 
         } catch (Exception ex) {

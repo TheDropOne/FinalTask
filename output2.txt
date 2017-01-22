@@ -1,0 +1,5 @@
+  Created by Semen on 20-Nov-16. - 1 times.
+Pattern patternSecondFile = Pattern.compile("[^\\d\\s]+"); - 3 times.
+for (String word : listOfWords) {            matcherFirst = patternFirstFile.matcher(word);            matcherSecond = patternSecondFile.matcher(word);            if (matcherFirst.matches()) {                listFirstTask.add(word);            }            if (matcherSecond.matches()) {                listSecondTask.add(word);            }         - 1 times.
+Pattern patternFirstFile = Pattern.compile("\\d+"); - 1 times.
+        List<String> sourceList = readListOfStrings(INPUT_FILE_NAME);        List<String> listOfWords = new ArrayList<>();        List<String> listFirstTask = new ArrayList<>();        List<String> listSecondTask = new ArrayList<>() - 1 times.

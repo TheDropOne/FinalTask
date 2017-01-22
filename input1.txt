@@ -1,1 +1,1 @@
-﻿C\\temp.txt
+C:\Github\FinalTask\input.java
