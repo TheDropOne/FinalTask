@@ -52,9 +52,7 @@ public class Runner {
             sourceFileString = StringFormatter.surroundOperators(sourceFileString);
             sourceFileString = StringFormatter.renameVariables(sourceFileString);
 
-
             InputOutput.writeString(resultJavaFile, sourceFileString);
-
 
         } catch (Exception ex) {
             ex.printStackTrace();
